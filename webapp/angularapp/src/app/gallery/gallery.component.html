@@ -1,0 +1,76 @@
+<html>
+<body>
+  <label id="icon" (click)="showOrHideMenu()"> {{icon}} </label>
+  <div *ngIf="showMenu" class="lists">
+    <ol>
+      <li>About</li>
+      <li>
+        <ol>
+          <li> This is an app for categorizing paintings by style and artist.<br /> Choose one of the provided paintings or upload your own.</li>
+        </ol>
+      </li>
+      <li>See all classes</li>
+      <li>
+        <ol>
+          <li id="li" (click)="showOrHide('showStyles')" [style.list-style-type]="showStyles ? 'disclosure-open' : 'disclosure-closed'">Styles</li>
+          <li class="styles" *ngIf="showStyles">
+            <ol *ngFor="let style of styles">
+              <li>{{ style }}</li>
+            </ol>
+          </li>
+          <li id="li" (click)="showOrHide('showArtists')" [style.list-style-type]="showArtists ? 'disclosure-open' : 'disclosure-closed'">Artists</li>
+          <li class="artists" *ngIf="showArtists">
+            <ol *ngFor="let artist of artists">
+              <li>{{ artist }}</li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+  <div class="gallery">
+    <div class="grid" (wheel)="onScroll($event)">
+      <div class="grid-item" *ngFor="let img of pagedImages; let i=index" [style.transform]="'scale(' + scales[i] + ') rotateY('+ rotatesY[i] +'deg) translateX('+ translatesX[i] +'%)' ">
+        <img src="{{ img }}" (click)="chooseImage($event)">
+      </div>
+    </div>
+  </div>
+  <div class="buttons">
+    <div (click)="previousPage()">
+      <svg width="30" height="30" >
+        <circle cx="15" cy="15" r="13" fill="black" />
+        <path d="M11 15l6.12-6.12v12.24z" fill="white" />
+      </svg>
+    </div>
+    <div (click)="nextPage()">
+      <svg width="30" height="30" >
+        <circle cx="15" cy="15" r="13" fill="black" />
+        <path d="M18 15l-6.12-6.12v12.24z" fill="white" />
+      </svg>
+    </div>
+  </div>
+  <div class="upload">
+    <label for="image-upload">
+      <input type="file" id="image-upload" (change)="onFileSelected($event)" style="display: none" multiple accept=".jpg, .jpeg, .png" />
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="-3 3 33 33" width="44" height="44">
+        <path fill="none" d="M0 0h24v24H0z" />
+        <rect x="5" y="7" width="14" height="10" rx="2" ry="2" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M12 3v6M9 6l3-3 3 3" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </label>
+  </div>
+  <div *ngIf="showImage" class="result-container">
+    <div class="image-container">
+      <img src="{{image}}" />
+      <svg (click)="removeImage()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="33" height="33" style=" position:absolute; top:10px; right:10px;">
+        <path d="M14.7 7.3L13.3 6L8 11.3L2.7 6L1.3 7.4L6.6 12.7L1.3 18L2.7 19.4L8 14.1L13.3 19.4L14.7 18L9.4 12.7L14.7 7.3Z" fill="white" />
+      </svg>
+      <br />
+      <p>
+        Style: {{style}} <br />
+        Artist: {{artist}}
+      </p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+body {
+  background-image: url(https://img.freepik.com/premium-photo/black-background-abstract-with-gradient-empty-room_1003113-112.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  background-color:black;
+  animation: pageLoadAnimation 1s ease-in-out forwards;
+}
+
+label {
+  color: white;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+#icon {
+    padding-left:0.6rem;
+}
+
+.lists {
+  position: absolute;
+  z-index: 3;
+  background-color: rgba(0,0,0,0.7);
+  overflow-y: scroll;
+  height: 90vh;
+  width: 100%;
+  font-family: 'Bookman Old Style';
+}
+
+.lists::-webkit-scrollbar {
+  width: 5px;
+}
+
+.lists::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 5px;
+}
+
+ol {
+  list-style-type: none;
+  color: white;
+}
+
+#li {
+  cursor: pointer;
+}
+
+.gallery {
+  margin-top: 16vh;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 20vw);
+  height: 60vh;
+  perspective: 66vw;
+}
+
+.grid-item {
+  overflow: hidden;
+  width: 100%;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  filter: drop-shadow(0px 0px 2rem white);
+  //transition: transform 0.1s ease;
+}
+
+.grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.grid-item:hover {
+  filter: drop-shadow(0px 0px 3rem white);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: -10vh;
+}
+
+svg {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+svg:hover {
+  opacity: 1;
+}
+
+
+@keyframes pageLoadAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.upload {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: -10vh;
+}
+
+p {
+  position: absolute;
+  width: 100%;
+  font-family: 'Bookman Old Style';
+  color: black;
+  font-style: oblique;
+  text-align: center;
+  background-color:white;
+  padding-bottom:1rem;
+}
+
+
+.result-container {
+  display: flex;
+  justify-content: center;
+}
+
+.image-container {
+  position: absolute;
+  z-index:2;
+  top: 20vh;
+  min-height: 60vh;
+  max-width: 80vw;
+  background-color: white;
+}
+
+.image-container img {
+  object-fit: cover;
+  min-height: 56vh;
+  max-height: 56vh;
+  max-width: 80vw;
+  filter: drop-shadow(0px 0px 2rem white);
+}
+
+.image-container:hover {
+  transform: scale(1.1);
+}
+
+.image-container:hover svg {
+  opacity: 0.6;
+  visibility: visible;
+}
+
+.image-container svg {
+  visibility: hidden;
+}
+
+.image-container svg:hover {
+  opacity: 1.0;
+}
+
